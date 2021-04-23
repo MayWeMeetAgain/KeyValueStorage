@@ -48,6 +48,10 @@ public class SegmentImpl implements Segment {
         return new SegmentImpl(segmentName, tableRootPath);
     }
 
+    public static Segment initializeFromContext(SegmentInitializationContext context) {
+        return null;
+    }
+
     static String createSegmentName(String tableName) {
         return tableName + "_" + System.currentTimeMillis();
     }

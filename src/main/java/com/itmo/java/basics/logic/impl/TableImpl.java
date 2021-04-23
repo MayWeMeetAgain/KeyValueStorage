@@ -37,6 +37,10 @@ public class TableImpl implements Table {
         return new TableImpl(tableName, pathToDatabaseRoot, tableIndex);
     }
 
+    public static Table initializeFromContext(TableInitializationContext context) {
+        return null;
+    }
+
     @Override
     public String getName() {
         return tableName;

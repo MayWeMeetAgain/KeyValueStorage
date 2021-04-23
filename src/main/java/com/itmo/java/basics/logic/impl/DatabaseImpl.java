@@ -40,6 +40,10 @@ public class DatabaseImpl implements Database {
         return new DatabaseImpl(dbName, databaseRoot);
     }
 
+    public static Database initializeFromContext(DatabaseInitializationContext context) {
+        return null;
+    }
+
     @Override
     public String getName() {
         return dbName;
