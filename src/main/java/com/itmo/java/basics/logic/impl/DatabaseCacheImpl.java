@@ -27,6 +27,10 @@ public class DatabaseCacheImpl implements DatabaseCache {
         cache = new CachingMap<String, byte[]>(capacity);
     }
 
+    public DatabaseCacheImpl() {
+        cache = new CachingMap<String, byte[]>(CAPACITY);
+    }
+
     @Override
     public byte[] get(String key) {
         return cache.get(key);
