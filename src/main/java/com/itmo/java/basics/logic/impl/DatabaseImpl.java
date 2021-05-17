@@ -3,6 +3,7 @@ package com.itmo.java.basics.logic.impl;
 import com.itmo.java.basics.exceptions.DatabaseException;
 import com.itmo.java.basics.initialization.DatabaseInitializationContext;
 import com.itmo.java.basics.index.impl.TableIndex;
+import com.itmo.java.basics.initialization.DatabaseInitializationContext;
 import com.itmo.java.basics.logic.Database;
 import com.itmo.java.basics.logic.Table;
 
@@ -30,6 +31,12 @@ public class DatabaseImpl implements Database {
         tables = new HashMap<String, Table>();
     }
 
+    private DatabaseImpl (String dbName, Path dbRoot, Map<String, Table> tables) {
+        this.dbName = dbName;
+        this.dbRoot = dbRoot;
+        this.tables = tables;
+    }
+
     public static Database create(String dbName, Path databaseRoot) throws DatabaseException {
         if (dbName.isEmpty() || dbName == null) {
             throw new DatabaseException("Given database name is empty or null");
@@ -46,7 +53,7 @@ public class DatabaseImpl implements Database {
     }
 
     public static Database initializeFromContext(DatabaseInitializationContext context) {
-        return null;
+        return new DatabaseImpl(context.getDbName(), context.getDatabasePath().getParent(), context.getTables());
     }
 
     @Override
