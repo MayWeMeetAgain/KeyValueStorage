@@ -5,32 +5,42 @@ import com.itmo.java.basics.initialization.TableInitializationContext;
 import com.itmo.java.basics.logic.Segment;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class TableInitializationContextImpl implements TableInitializationContext {
+    private String tableName;
+    private Path tablePath;
+    private TableIndex tableIndex;
+    private Segment curSegment;
+
     public TableInitializationContextImpl(String tableName, Path databasePath, TableIndex tableIndex) {
+        this.tableName = tableName;
+        this.tablePath = Paths.get(databasePath.toString(), tableName);
+        this.tableIndex = tableIndex;
     }
 
     @Override
     public String getTableName() {
-        return null;
+        return tableName;
     }
 
     @Override
     public Path getTablePath() {
-        return null;
+        return tablePath;
     }
 
     @Override
     public TableIndex getTableIndex() {
-        return null;
+        return tableIndex;
     }
 
     @Override
     public Segment getCurrentSegment() {
-        return null;
+        return curSegment;
     }
 
     @Override
     public void updateCurrentSegment(Segment segment) {
+        curSegment = segment;
     }
 }
