@@ -10,6 +10,7 @@ import com.itmo.java.basics.logic.io.DatabaseOutputStream;
 import com.itmo.java.basics.index.SegmentOffsetInfo;
 import com.itmo.java.basics.index.impl.SegmentIndex;
 import com.itmo.java.basics.index.impl.SegmentOffsetInfoImpl;
+import com.itmo.java.basics.initialization.SegmentInitializationContext;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -30,7 +31,7 @@ import java.util.Optional;
 public class SegmentImpl implements Segment {
     private final String segmentName;
     private final Path segmentRoot;
-    private final SegmentIndex index;
+    private SegmentIndex index;
     private long freeSize;
     private boolean isReadOnly;
     private static final long SEGMENT_SIZE = 100_000;
@@ -44,7 +45,15 @@ public class SegmentImpl implements Segment {
         isReadOnly = false;
     }
 
-    static Segment create(String segmentName, Path tableRootPath) throws DatabaseException {
+    private SegmentImpl(String segmentName, Path tableRootPath, SegmentIndex index, long freeSize, boolean isReadOnly) {
+        this.segmentName = segmentName;
+        this.segmentRoot = tableRootPath;
+        this.index = index;
+        this.freeSize = freeSize;
+        this.isReadOnly = isReadOnly;
+    }
+
+    public static Segment create(String segmentName, Path tableRootPath) throws DatabaseException {
         try {
             Files.createFile(Paths.get(tableRootPath.toString(), segmentName));
         } catch (FileAlreadyExistsException e) {
@@ -57,7 +66,13 @@ public class SegmentImpl implements Segment {
     }
 
     public static Segment initializeFromContext(SegmentInitializationContext context) {
-        return null;
+        boolean isReadOnly = false; 
+        long freeSize = SEGMENT_SIZE - context.getCurrentSize();
+
+        if (freeSize <= 0) {
+            isReadOnly = true;
+        }
+        return new SegmentImpl(context.getSegmentName(), context.getSegmentPath().getParent(), context.getIndex(), freeSize, isReadOnly);
     }
 
     static String createSegmentName(String tableName) {
