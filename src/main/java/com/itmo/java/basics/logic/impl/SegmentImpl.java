@@ -10,7 +10,6 @@ import com.itmo.java.basics.logic.io.DatabaseOutputStream;
 import com.itmo.java.basics.index.SegmentOffsetInfo;
 import com.itmo.java.basics.index.impl.SegmentIndex;
 import com.itmo.java.basics.index.impl.SegmentOffsetInfoImpl;
-import com.itmo.java.basics.initialization.SegmentInitializationContext;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
