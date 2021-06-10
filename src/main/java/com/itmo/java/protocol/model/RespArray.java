@@ -2,6 +2,7 @@ package com.itmo.java.protocol.model;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -13,9 +14,13 @@ public class RespArray implements RespObject {
      * Код объекта
      */
     public static final byte CODE = '*';
+    private final List<RespObject> objects;
 
     public RespArray(RespObject... objects) {
-        //TODO implement
+        this.objects = new LinkedList<RespObject>();
+        for (RespObject object : objects) {
+            this.objects.add(object);
+        }
     }
 
     /**
@@ -35,17 +40,22 @@ public class RespArray implements RespObject {
      */
     @Override
     public String asString() {
-        //TODO implement
-        return null;
+        List<String> stringObjects = new LinkedList<String>();
+        objects.forEach(obj -> stringObjects.add(obj.asString()));
+        return String.join(" ", stringObjects);
     }
 
     @Override
     public void write(OutputStream os) throws IOException {
-        //TODO implement
+        os.write(CODE);
+        os.write(String.valueOf(objects.size()).getBytes());
+        os.write(CRLF);
+        for (RespObject object : objects) {
+            object.write(os);
+        }
     }
 
     public List<RespObject> getObjects() {
-        //TODO implement
-        return null;
+        return objects;
     }
 }

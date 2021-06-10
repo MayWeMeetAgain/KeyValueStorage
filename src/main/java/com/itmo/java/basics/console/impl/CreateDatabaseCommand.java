@@ -4,6 +4,7 @@ import com.itmo.java.basics.console.DatabaseCommand;
 import com.itmo.java.basics.console.DatabaseCommandArgPositions;
 import com.itmo.java.basics.console.DatabaseCommandResult;
 import com.itmo.java.basics.console.ExecutionEnvironment;
+import com.itmo.java.basics.exceptions.DatabaseException;
 import com.itmo.java.basics.logic.DatabaseFactory;
 import com.itmo.java.protocol.model.RespObject;
 
@@ -13,7 +14,11 @@ import java.util.List;
  * Команда для создания базы данных
  */
 public class CreateDatabaseCommand implements DatabaseCommand {
-
+    private final ExecutionEnvironment env;
+    private final DatabaseFactory factory;
+    private final List<RespObject> commandArgs;
+    private static final int NUM_OF_ARG = 3;
+    
     /**
      * Создает команду.
      * <br/>
@@ -26,7 +31,21 @@ public class CreateDatabaseCommand implements DatabaseCommand {
      * @throws IllegalArgumentException если передано неправильное количество аргументов
      */
     public CreateDatabaseCommand(ExecutionEnvironment env, DatabaseFactory factory, List<RespObject> commandArgs) {
-        //TODO implement
+        if (commandArgs == null) {
+            throw new NullPointerException("Arguments list for CreateDatabase command is null");
+        }
+        if (commandArgs.size() != NUM_OF_ARG) {
+            throw new IllegalArgumentException(String.format("Wrong number of arguments for CreateDatabase, expected: %d, given: %d", NUM_OF_ARG, commandArgs.size()));
+        }
+        for (RespObject arg : commandArgs) {
+            if (arg == null) {
+                throw new IllegalArgumentException("Some arguments are null");
+            }
+        }
+
+        this.env = env;
+        this.factory = factory;
+        this.commandArgs = commandArgs;
     }
 
     /**
@@ -36,7 +55,12 @@ public class CreateDatabaseCommand implements DatabaseCommand {
      */
     @Override
     public DatabaseCommandResult execute() {
-        //TODO implement
-        return null;
+        String dbName = commandArgs.get(DatabaseCommandArgPositions.DATABASE_NAME.getPositionIndex()).asString();
+        try {
+            env.addDatabase(factory.createNonExistent(dbName, env.getWorkingPath()));
+            return DatabaseCommandResult.success((String.format("Database %s created successfully", dbName)).getBytes());
+        } catch (DatabaseException e) {
+            return DatabaseCommandResult.error(String.format("Can't create database %s, because %s", dbName, e.getMessage()));
+        } 
     }
 }

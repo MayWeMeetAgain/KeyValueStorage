@@ -10,15 +10,19 @@ import com.itmo.java.protocol.model.RespObject;
  * (пока еще нет реализации сокетов)
  */
 public class DirectReferenceKvsConnection implements KvsConnection {
+    private final DatabaseServer databaseServer;
 
     public DirectReferenceKvsConnection(DatabaseServer databaseServer) {
-        //TODO implement
+        this.databaseServer = databaseServer;
     }
 
     @Override
     public RespObject send(int commandId, RespArray command) throws ConnectionException {
-        //TODO implement
-        return null;
+        try {
+            return databaseServer.executeNextCommand(command).get().serialize();
+        } catch (Exception e) {
+            throw new ConnectionException("Connection problems", e);
+        }
     }
 
     /**
