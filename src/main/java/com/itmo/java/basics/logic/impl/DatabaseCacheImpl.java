@@ -6,10 +6,7 @@ import java.util.Map;
 import com.itmo.java.basics.logic.DatabaseCache;
 
 public class DatabaseCacheImpl implements DatabaseCache {
-<<<<<<< HEAD
     private static final int CAPACITY = 5_000;
-=======
->>>>>>> fa5b12c (Lab2 (#2))
     private Map<String, byte[]> cache;
 
     private class CachingMap<T, V> extends LinkedHashMap<T, V> {
@@ -30,13 +27,10 @@ public class DatabaseCacheImpl implements DatabaseCache {
         cache = new CachingMap<String, byte[]>(capacity);
     }
 
-<<<<<<< HEAD
     public DatabaseCacheImpl() {
         cache = new CachingMap<String, byte[]>(CAPACITY);
     }
 
-=======
->>>>>>> fa5b12c (Lab2 (#2))
     @Override
     public byte[] get(String key) {
         return cache.get(key);
