@@ -12,7 +12,11 @@ public interface WritableDatabaseRecord extends DatabaseRecord {
 
 
     /**
+<<<<<<< HEAD
      * Возвращает размер значения в байтах. -1, если значение отсутствует
+=======
+     * Возвращает размер значения в байтах. -1, если значение отсутвует
+>>>>>>> 44c7869 (Initial commit)
      */
     int getValueSize();
 }

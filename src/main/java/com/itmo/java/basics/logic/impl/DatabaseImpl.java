@@ -1,6 +1,7 @@
 package com.itmo.java.basics.logic.impl;
 
 import com.itmo.java.basics.exceptions.DatabaseException;
+<<<<<<< HEAD
 import com.itmo.java.basics.initialization.DatabaseInitializationContext;
 import com.itmo.java.basics.index.impl.TableIndex;
 import com.itmo.java.basics.logic.Database;
@@ -53,34 +54,61 @@ public class DatabaseImpl implements Database {
 
     public static Database initializeFromContext(DatabaseInitializationContext context) {
         return new DatabaseImpl(context.getDbName(), context.getDatabasePath().getParent(), context.getTables());
+=======
+import com.itmo.java.basics.logic.Database;
+
+import java.nio.file.Path;
+import java.util.Optional;
+
+public class DatabaseImpl implements Database {
+    public static Database create(String dbName, Path databaseRoot) throws DatabaseException {
+        return null;
+>>>>>>> 44c7869 (Initial commit)
     }
 
     @Override
     public String getName() {
+<<<<<<< HEAD
         return dbName;
+=======
+        return null;
+>>>>>>> 44c7869 (Initial commit)
     }
 
     @Override
     public void createTableIfNotExists(String tableName) throws DatabaseException {
+<<<<<<< HEAD
         if (tableName.isEmpty() || tableName == null ) {
             throw new DatabaseException("Given table name is empty or null");   
         }
         Table curTable = TableImpl.create(tableName, Paths.get(dbRoot.toString(), dbName), new TableIndex());
         tables.put(tableName, curTable);
+=======
+
+>>>>>>> 44c7869 (Initial commit)
     }
 
     @Override
     public void write(String tableName, String objectKey, byte[] objectValue) throws DatabaseException {
+<<<<<<< HEAD
         searchTable(tableName).write(objectKey, objectValue);  
+=======
+
+>>>>>>> 44c7869 (Initial commit)
     }
 
     @Override
     public Optional<byte[]> read(String tableName, String objectKey) throws DatabaseException {
+<<<<<<< HEAD
         return searchTable(tableName).read(objectKey);
+=======
+        return Optional.empty();
+>>>>>>> 44c7869 (Initial commit)
     }
 
     @Override
     public void delete(String tableName, String objectKey) throws DatabaseException {
+<<<<<<< HEAD
         searchTable(tableName).delete(objectKey);
     }
 
@@ -93,4 +121,8 @@ public class DatabaseImpl implements Database {
         return requiredTable;
     }
 
+=======
+
+    }
+>>>>>>> 44c7869 (Initial commit)
 }

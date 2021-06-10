@@ -17,6 +17,7 @@
 
     <dependencies>
         <dependency>
+<<<<<<< HEAD
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.18</version>
@@ -32,6 +33,8 @@
         </dependency>
 
         <dependency>
+=======
+>>>>>>> 44c7869 (Initial commit)
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13.2</version>
