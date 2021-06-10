@@ -17,6 +17,10 @@ import com.itmo.java.basics.logic.DatabaseRecord;
 import com.itmo.java.basics.logic.Segment;
 import com.itmo.java.basics.logic.impl.SegmentImpl;
 import com.itmo.java.basics.logic.io.DatabaseInputStream;
+<<<<<<< HEAD
+=======
+
+>>>>>>> fa5b12c (Lab2 (#2))
 
 public class SegmentInitializer implements Initializer {
 

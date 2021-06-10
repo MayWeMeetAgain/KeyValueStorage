@@ -19,6 +19,7 @@ import com.itmo.java.basics.exceptions.DatabaseException;
 import com.itmo.java.basics.index.SegmentOffsetInfo;
 import com.itmo.java.basics.index.impl.SegmentIndex;
 import com.itmo.java.basics.index.impl.SegmentOffsetInfoImpl;
+import com.itmo.java.basics.initialization.SegmentInitializationContext;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -40,10 +41,14 @@ public class SegmentImpl implements Segment {
     private final String segmentName;
     private final Path segmentRoot;
 <<<<<<< HEAD
+<<<<<<< HEAD
     private SegmentIndex index;
 =======
     private final SegmentIndex index;
 >>>>>>> 99f644e (Lab1 (#1))
+=======
+    private SegmentIndex index;
+>>>>>>> fa5b12c (Lab2 (#2))
     private long freeSize;
     private boolean isReadOnly;
     private static final long SEGMENT_SIZE = 100_000;
@@ -58,6 +63,9 @@ public class SegmentImpl implements Segment {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> fa5b12c (Lab2 (#2))
     private SegmentImpl(String segmentName, Path tableRootPath, SegmentIndex index, long freeSize, boolean isReadOnly) {
         this.segmentName = segmentName;
         this.segmentRoot = tableRootPath;
@@ -67,9 +75,12 @@ public class SegmentImpl implements Segment {
     }
 
     public static Segment create(String segmentName, Path tableRootPath) throws DatabaseException {
+<<<<<<< HEAD
 =======
     static Segment create(String segmentName, Path tableRootPath) throws DatabaseException {
 >>>>>>> 99f644e (Lab1 (#1))
+=======
+>>>>>>> fa5b12c (Lab2 (#2))
         try {
             Files.createFile(Paths.get(tableRootPath.toString(), segmentName));
         } catch (FileAlreadyExistsException e) {
@@ -95,7 +106,13 @@ public class SegmentImpl implements Segment {
     }
 
     public static Segment initializeFromContext(SegmentInitializationContext context) {
-        return null;
+        boolean isReadOnly = false; 
+        long freeSize = SEGMENT_SIZE - context.getCurrentSize();
+
+        if (freeSize <= 0) {
+            isReadOnly = true;
+        }
+        return new SegmentImpl(context.getSegmentName(), context.getSegmentPath().getParent(), context.getIndex(), freeSize, isReadOnly);
     }
 
     static String createSegmentName(String tableName) {

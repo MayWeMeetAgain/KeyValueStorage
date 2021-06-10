@@ -6,6 +6,7 @@ import com.itmo.java.basics.initialization.DatabaseInitializationContext;
 =======
 >>>>>>> 99f644e (Lab1 (#1))
 import com.itmo.java.basics.index.impl.TableIndex;
+import com.itmo.java.basics.initialization.DatabaseInitializationContext;
 import com.itmo.java.basics.logic.Database;
 import com.itmo.java.basics.logic.Table;
 
@@ -37,14 +38,20 @@ public class DatabaseImpl implements Database {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> fa5b12c (Lab2 (#2))
     private DatabaseImpl (String dbName, Path dbRoot, Map<String, Table> tables) {
         this.dbName = dbName;
         this.dbRoot = dbRoot;
         this.tables = tables;
     }
 
+<<<<<<< HEAD
 =======
 >>>>>>> 99f644e (Lab1 (#1))
+=======
+>>>>>>> fa5b12c (Lab2 (#2))
     public static Database create(String dbName, Path databaseRoot) throws DatabaseException {
         if (dbName.isEmpty() || dbName == null) {
             throw new DatabaseException("Given database name is empty or null");
@@ -68,7 +75,7 @@ public class DatabaseImpl implements Database {
     }
 
     public static Database initializeFromContext(DatabaseInitializationContext context) {
-        return null;
+        return new DatabaseImpl(context.getDbName(), context.getDatabasePath().getParent(), context.getTables());
     }
 
     @Override

@@ -3,9 +3,13 @@ package com.itmo.java.basics.logic.impl;
 import com.itmo.java.basics.exceptions.DatabaseException;
 import com.itmo.java.basics.index.impl.TableIndex;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import com.itmo.java.basics.initialization.TableInitializationContext;
 =======
 >>>>>>> 99f644e (Lab1 (#1))
+=======
+import com.itmo.java.basics.initialization.TableInitializationContext;
+>>>>>>> fa5b12c (Lab2 (#2))
 import com.itmo.java.basics.logic.Segment;
 import com.itmo.java.basics.logic.Table;
 
@@ -38,7 +42,14 @@ public class TableImpl implements Table {
         this.currentSegment = SegmentImpl.create(SegmentImpl.createSegmentName(tableName), getTablePath());
     } 
 
-    static Table create(String tableName, Path pathToDatabaseRoot, TableIndex tableIndex) throws DatabaseException {
+    private TableImpl(String tableName, Path pathToDatabaseRoot, TableIndex tableIndex, Segment currentSegment) {
+        this.tableName = tableName;
+        this.tableRoot = pathToDatabaseRoot;
+        this.tableIndex = tableIndex;
+        this.currentSegment = currentSegment;
+    }
+
+    public static Table create(String tableName, Path pathToDatabaseRoot, TableIndex tableIndex) throws DatabaseException {
         try {
             Files.createDirectory(Paths.get(pathToDatabaseRoot.toString(), tableName));
         } catch (FileAlreadyExistsException e) {
@@ -51,7 +62,8 @@ public class TableImpl implements Table {
     }
 
     public static Table initializeFromContext(TableInitializationContext context) {
-        return null;
+        Table table = new TableImpl(context.getTableName(), context.getTablePath(), context.getTableIndex(), context.getCurrentSegment());
+        return new CachingTable(table);
     }
 <<<<<<< HEAD
 =======
