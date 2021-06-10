@@ -53,6 +53,10 @@ public class TableImpl implements Table {
     public static Table initializeFromContext(TableInitializationContext context) {
         return null;
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> d04cfd7 (fixed base for lab2)
     @Override
     public String getName() {
         return tableName;

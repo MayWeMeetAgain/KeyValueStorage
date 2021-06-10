@@ -67,6 +67,10 @@ public class DatabaseImpl implements Database {
 >>>>>>> 99f644e (Lab1 (#1))
     }
 
+    public static Database initializeFromContext(DatabaseInitializationContext context) {
+        return null;
+    }
+
     @Override
     public String getName() {
         return dbName;

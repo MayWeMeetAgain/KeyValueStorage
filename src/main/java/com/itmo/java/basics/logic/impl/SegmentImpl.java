@@ -94,6 +94,10 @@ public class SegmentImpl implements Segment {
 >>>>>>> 99f644e (Lab1 (#1))
     }
 
+    public static Segment initializeFromContext(SegmentInitializationContext context) {
+        return null;
+    }
+
     static String createSegmentName(String tableName) {
         return tableName + "_" + System.currentTimeMillis();
     }
