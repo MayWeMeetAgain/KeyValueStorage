@@ -1,6 +1,5 @@
 package com.itmo.java.basics.logic.impl;
 
-<<<<<<< HEAD
 import com.itmo.java.basics.exceptions.DatabaseException;
 import com.itmo.java.basics.initialization.SegmentInitializationContext;
 import com.itmo.java.basics.logic.Segment;
@@ -73,18 +72,6 @@ public class SegmentImpl implements Segment {
             isReadOnly = true;
         }
         return new SegmentImpl(context.getSegmentName(), context.getSegmentPath().getParent(), context.getIndex(), freeSize, isReadOnly);
-=======
-import com.itmo.java.basics.logic.Segment;
-import com.itmo.java.basics.exceptions.DatabaseException;
-
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.Optional;
-
-public class SegmentImpl implements Segment {
-    static Segment create(String segmentName, Path tableRootPath) throws DatabaseException {
-        throw new UnsupportedOperationException(); // todo implement
->>>>>>> 44c7869 (Initial commit)
     }
 
     static String createSegmentName(String tableName) {
@@ -93,29 +80,20 @@ public class SegmentImpl implements Segment {
 
     @Override
     public String getName() {
-<<<<<<< HEAD
         return segmentName;
-=======
-        return null;
->>>>>>> 44c7869 (Initial commit)
     }
 
     @Override
     public boolean write(String objectKey, byte[] objectValue) throws IOException {
-<<<<<<< HEAD
         if (objectValue == null) {
             return delete(objectKey);
         }
             SetDatabaseRecord sRecord = new SetDatabaseRecord(objectKey.getBytes(), objectValue);
         return putInFile(sRecord, new SegmentOffsetInfoImpl(SEGMENT_SIZE - freeSize));
-=======
-        return false;
->>>>>>> 44c7869 (Initial commit)
     }
 
     @Override
     public Optional<byte[]> read(String objectKey) throws IOException {
-<<<<<<< HEAD
         Optional<SegmentOffsetInfo> offset = index.searchForKey(objectKey);
 
         if (offset.isEmpty()) {
@@ -132,23 +110,15 @@ public class SegmentImpl implements Segment {
             }
             return Optional.of(record.get().getValue());
         }
-=======
-        return Optional.empty();
->>>>>>> 44c7869 (Initial commit)
     }
 
     @Override
     public boolean isReadOnly() {
-<<<<<<< HEAD
         return isReadOnly;
-=======
-        return false;
->>>>>>> 44c7869 (Initial commit)
     }
 
     @Override
     public boolean delete(String objectKey) throws IOException {
-<<<<<<< HEAD
         RemoveDatabaseRecord rRecord = new RemoveDatabaseRecord(objectKey.getBytes());
         return putInFile(rRecord, null);
     }
@@ -171,8 +141,5 @@ public class SegmentImpl implements Segment {
 
     private String getSegmentPath() {
         return Paths.get(segmentRoot.toString(), segmentName).toString();
-=======
-        return false;
->>>>>>> 44c7869 (Initial commit)
     }
 }

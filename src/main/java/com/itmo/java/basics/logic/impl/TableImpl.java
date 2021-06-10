@@ -2,7 +2,6 @@ package com.itmo.java.basics.logic.impl;
 
 import com.itmo.java.basics.exceptions.DatabaseException;
 import com.itmo.java.basics.index.impl.TableIndex;
-<<<<<<< HEAD
 import com.itmo.java.basics.initialization.TableInitializationContext;
 import com.itmo.java.basics.logic.Segment;
 import com.itmo.java.basics.logic.Table;
@@ -54,26 +53,10 @@ public class TableImpl implements Table {
     @Override
     public String getName() {
         return tableName;
-=======
-import com.itmo.java.basics.logic.Table;
-
-import java.nio.file.Path;
-import java.util.Optional;
-
-public class TableImpl implements Table {
-    static Table create(String tableName, Path pathToDatabaseRoot, TableIndex tableIndex) throws DatabaseException {
-        return null;
-    }
-
-    @Override
-    public String getName() {
-        return null;
->>>>>>> 44c7869 (Initial commit)
     }
 
     @Override
     public void write(String objectKey, byte[] objectValue) throws DatabaseException {
-<<<<<<< HEAD
         try {
             if (!currentSegment.write(objectKey, objectValue)) {
                 currentSegment = SegmentImpl.create(SegmentImpl.createSegmentName(tableName), getTablePath());
@@ -83,14 +66,10 @@ public class TableImpl implements Table {
         } catch (IOException e) {
             throw new DatabaseException(String.format("Writing value %s by key %s failed because of IO exception", objectValue.toString(), objectKey), e);
         }
-=======
-
->>>>>>> 44c7869 (Initial commit)
     }
 
     @Override
     public Optional<byte[]> read(String objectKey) throws DatabaseException {
-<<<<<<< HEAD
         Optional<Segment> oSegment = tableIndex.searchForKey(objectKey);
         if (oSegment.isEmpty()) {
             return Optional.empty();
@@ -100,14 +79,10 @@ public class TableImpl implements Table {
         } catch (IOException e) {
             throw new DatabaseException("Reading value by key" + objectKey + "failed because of IO exception", e);
         }
-=======
-        return Optional.empty();
->>>>>>> 44c7869 (Initial commit)
     }
 
     @Override
     public void delete(String objectKey) throws DatabaseException {
-<<<<<<< HEAD
         try {
             if (!currentSegment.delete(objectKey)) {
                 currentSegment = SegmentImpl.create(SegmentImpl.createSegmentName(tableName), getTablePath());
@@ -121,8 +96,5 @@ public class TableImpl implements Table {
 
     private Path getTablePath() {
         return Paths.get(tableRoot.toString(), tableName);
-=======
-
->>>>>>> 44c7869 (Initial commit)
     }
 }

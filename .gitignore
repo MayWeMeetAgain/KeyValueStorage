@@ -38,3 +38,4 @@ hs_err_pid*
 *.settings
 =======
 >>>>>>> 44c7869 (Initial commit)
+.vscode/settings.json
