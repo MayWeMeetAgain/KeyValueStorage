@@ -30,19 +30,8 @@ target
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 99f644e (Lab1 (#1))
 
 # VSCode files
 *.classpath
 *.project
-<<<<<<< HEAD
 *.settings
-=======
->>>>>>> 44c7869 (Initial commit)
-.vscode/settings.json
-=======
-*.settings
->>>>>>> 99f644e (Lab1 (#1))
