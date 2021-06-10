@@ -9,6 +9,7 @@ import com.itmo.java.protocol.model.RespCommandId;
  */
 public class CreateDatabaseKvsCommand implements KvsCommand {
     private static final String COMMAND_NAME = "CREATE_DATABASE";
+    private final String databaseName;
 
     /**
      * Создает объект
@@ -16,7 +17,7 @@ public class CreateDatabaseKvsCommand implements KvsCommand {
      * @param databaseName имя базы данных
      */
     public CreateDatabaseKvsCommand(String databaseName) {
-        //TODO implement
+        this.databaseName = databaseName;
     }
 
     /**
@@ -26,13 +27,15 @@ public class CreateDatabaseKvsCommand implements KvsCommand {
      */
     @Override
     public RespArray serialize() {
-        //TODO implement
-        return null;
+        return new RespArray(
+            new RespCommandId(idGen.intValue()),
+            new RespBulkString(COMMAND_NAME.getBytes()),
+            new RespBulkString(databaseName.getBytes())
+        );
     }
 
     @Override
     public int getCommandId() {
-        //TODO implement
-        return 0;
+        return idGen.intValue();
     }
 }

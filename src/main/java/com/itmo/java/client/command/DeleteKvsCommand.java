@@ -6,10 +6,15 @@ import com.itmo.java.protocol.model.RespCommandId;
 
 public class DeleteKvsCommand implements KvsCommand {
     private static final String COMMAND_NAME = "DELETE_KEY";
+    private final String databaseName;
+    private final String tableName;
+    private final String key;
 
 
     public DeleteKvsCommand(String databaseName, String tableName, String key) {
-        //TODO implement
+        this.databaseName = databaseName;
+        this.tableName = tableName;
+        this.key = key;
     }
 
     /**
@@ -19,13 +24,17 @@ public class DeleteKvsCommand implements KvsCommand {
      */
     @Override
     public RespArray serialize() {
-        //TODO implement
-        return null;
+        return new RespArray(
+            new RespCommandId(idGen.intValue()),
+            new RespBulkString(COMMAND_NAME.getBytes()),
+            new RespBulkString(databaseName.getBytes()),
+            new RespBulkString(tableName.getBytes()),
+            new RespBulkString(key.getBytes())
+        );
     }
 
     @Override
     public int getCommandId() {
-        //TODO implement
-        return 0;
+        return idGen.intValue();
     }
 }
