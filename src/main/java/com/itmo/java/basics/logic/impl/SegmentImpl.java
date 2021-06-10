@@ -1,5 +1,6 @@
 package com.itmo.java.basics.logic.impl;
 
+<<<<<<< HEAD
 import com.itmo.java.basics.exceptions.DatabaseException;
 import com.itmo.java.basics.initialization.SegmentInitializationContext;
 import com.itmo.java.basics.logic.Segment;
@@ -7,6 +8,14 @@ import com.itmo.java.basics.logic.DatabaseRecord;
 import com.itmo.java.basics.logic.WritableDatabaseRecord;
 import com.itmo.java.basics.logic.io.DatabaseInputStream;
 import com.itmo.java.basics.logic.io.DatabaseOutputStream;
+=======
+import com.itmo.java.basics.logic.DatabaseRecord;
+import com.itmo.java.basics.logic.Segment;
+import com.itmo.java.basics.logic.WritableDatabaseRecord;
+import com.itmo.java.basics.logic.io.DatabaseInputStream;
+import com.itmo.java.basics.logic.io.DatabaseOutputStream;
+import com.itmo.java.basics.exceptions.DatabaseException;
+>>>>>>> 99f644e (Lab1 (#1))
 import com.itmo.java.basics.index.SegmentOffsetInfo;
 import com.itmo.java.basics.index.impl.SegmentIndex;
 import com.itmo.java.basics.index.impl.SegmentOffsetInfoImpl;
@@ -30,7 +39,11 @@ import java.util.Optional;
 public class SegmentImpl implements Segment {
     private final String segmentName;
     private final Path segmentRoot;
+<<<<<<< HEAD
     private SegmentIndex index;
+=======
+    private final SegmentIndex index;
+>>>>>>> 99f644e (Lab1 (#1))
     private long freeSize;
     private boolean isReadOnly;
     private static final long SEGMENT_SIZE = 100_000;
@@ -44,6 +57,7 @@ public class SegmentImpl implements Segment {
         isReadOnly = false;
     }
 
+<<<<<<< HEAD
     private SegmentImpl(String segmentName, Path tableRootPath, SegmentIndex index, long freeSize, boolean isReadOnly) {
         this.segmentName = segmentName;
         this.segmentRoot = tableRootPath;
@@ -53,6 +67,9 @@ public class SegmentImpl implements Segment {
     }
 
     public static Segment create(String segmentName, Path tableRootPath) throws DatabaseException {
+=======
+    static Segment create(String segmentName, Path tableRootPath) throws DatabaseException {
+>>>>>>> 99f644e (Lab1 (#1))
         try {
             Files.createFile(Paths.get(tableRootPath.toString(), segmentName));
         } catch (FileAlreadyExistsException e) {
@@ -62,6 +79,7 @@ public class SegmentImpl implements Segment {
         }
 
         return new SegmentImpl(segmentName, tableRootPath);
+<<<<<<< HEAD
     }
 
     public static Segment initializeFromContext(SegmentInitializationContext context) {
@@ -72,6 +90,8 @@ public class SegmentImpl implements Segment {
             isReadOnly = true;
         }
         return new SegmentImpl(context.getSegmentName(), context.getSegmentPath().getParent(), context.getIndex(), freeSize, isReadOnly);
+=======
+>>>>>>> 99f644e (Lab1 (#1))
     }
 
     static String createSegmentName(String tableName) {

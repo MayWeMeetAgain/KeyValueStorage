@@ -2,7 +2,10 @@ package com.itmo.java.basics.logic.io;
 
 import com.itmo.java.basics.logic.DatabaseRecord;
 import com.itmo.java.basics.logic.WritableDatabaseRecord;
+<<<<<<< HEAD
 import com.itmo.java.basics.logic.impl.RemoveDatabaseRecord;
+=======
+>>>>>>> 99f644e (Lab1 (#1))
 import com.itmo.java.basics.logic.impl.SetDatabaseRecord;
 
 import java.io.DataInputStream;
@@ -27,12 +30,16 @@ public class DatabaseInputStream extends DataInputStream {
      */
     public Optional<DatabaseRecord> readDbUnit() throws IOException {
         try {
+<<<<<<< HEAD
             WritableDatabaseRecord record; 
 
+=======
+>>>>>>> 99f644e (Lab1 (#1))
             byte[] key = new byte[readInt()];
             read(key);
             int valueSize = readInt();
             if (valueSize == SIZE_OF_REMOVED) {
+<<<<<<< HEAD
                 record = new RemoveDatabaseRecord(key);
             } else {
                 byte[] value = new byte[valueSize];
@@ -40,6 +47,14 @@ public class DatabaseInputStream extends DataInputStream {
                 record = new SetDatabaseRecord(key, value); 
             }
             return Optional.of(record);
+=======
+                return Optional.empty();
+            }
+            byte[] value = new byte[valueSize];
+            read(value);
+            WritableDatabaseRecord wRecord = new SetDatabaseRecord(key, value); 
+            return Optional.of(wRecord);
+>>>>>>> 99f644e (Lab1 (#1))
         } catch (EOFException e) {
             return Optional.empty();
         }

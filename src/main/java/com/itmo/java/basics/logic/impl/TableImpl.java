@@ -2,7 +2,10 @@ package com.itmo.java.basics.logic.impl;
 
 import com.itmo.java.basics.exceptions.DatabaseException;
 import com.itmo.java.basics.index.impl.TableIndex;
+<<<<<<< HEAD
 import com.itmo.java.basics.initialization.TableInitializationContext;
+=======
+>>>>>>> 99f644e (Lab1 (#1))
 import com.itmo.java.basics.logic.Segment;
 import com.itmo.java.basics.logic.Table;
 

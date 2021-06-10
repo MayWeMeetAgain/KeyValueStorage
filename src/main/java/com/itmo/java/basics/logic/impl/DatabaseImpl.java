@@ -1,7 +1,10 @@
 package com.itmo.java.basics.logic.impl;
 
 import com.itmo.java.basics.exceptions.DatabaseException;
+<<<<<<< HEAD
 import com.itmo.java.basics.initialization.DatabaseInitializationContext;
+=======
+>>>>>>> 99f644e (Lab1 (#1))
 import com.itmo.java.basics.index.impl.TableIndex;
 import com.itmo.java.basics.logic.Database;
 import com.itmo.java.basics.logic.Table;
@@ -16,10 +19,13 @@ import java.util.Map;
 import java.util.Optional;
 
 public class DatabaseImpl implements Database {
+<<<<<<< HEAD
     /**
      * @param databaseRoot путь к директории, которая может содержать несколько БД,
      *                     поэтому при создании БД необходимо создать директорию внутри databaseRoot.
      */
+=======
+>>>>>>> 99f644e (Lab1 (#1))
     private final String dbName;
     private final Path dbRoot;
     private final Map<String, Table> tables;
@@ -30,12 +36,15 @@ public class DatabaseImpl implements Database {
         tables = new HashMap<String, Table>();
     }
 
+<<<<<<< HEAD
     private DatabaseImpl (String dbName, Path dbRoot, Map<String, Table> tables) {
         this.dbName = dbName;
         this.dbRoot = dbRoot;
         this.tables = tables;
     }
 
+=======
+>>>>>>> 99f644e (Lab1 (#1))
     public static Database create(String dbName, Path databaseRoot) throws DatabaseException {
         if (dbName.isEmpty() || dbName == null) {
             throw new DatabaseException("Given database name is empty or null");
@@ -49,10 +58,13 @@ public class DatabaseImpl implements Database {
         }
         
         return new DatabaseImpl(dbName, databaseRoot);
+<<<<<<< HEAD
     }
 
     public static Database initializeFromContext(DatabaseInitializationContext context) {
         return new DatabaseImpl(context.getDbName(), context.getDatabasePath().getParent(), context.getTables());
+=======
+>>>>>>> 99f644e (Lab1 (#1))
     }
 
     @Override
