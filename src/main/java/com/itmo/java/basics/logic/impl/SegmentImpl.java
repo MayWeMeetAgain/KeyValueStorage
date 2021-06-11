@@ -30,7 +30,7 @@ import java.util.Optional;
 public class SegmentImpl implements Segment {
     private final String segmentName;
     private final Path segmentRoot;
-    private final SegmentIndex index;
+    private SegmentIndex index;
     private long freeSize;
     private boolean isReadOnly;
     private static final long SEGMENT_SIZE = 100_000;
